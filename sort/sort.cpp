@@ -60,22 +60,23 @@ void insertsort(int a[], int len)
 
 	for (i = 0; i < len - 1; ++i)
 	{
-		bool bflag = false;
-		for (j = 0; j < k; ++j)
+		if (temp >= a[k - 1])
 		{
-			if (temp < a[j])
+			movebackbypos(a, len - 1, k);
+			a[k] = temp;			
+		}
+		else
+		{
+			for (j = 0; j < k; ++j)
 			{
-				movebackbypos(a, len - 1, j);
-				a[j] = temp;
-				bflag = true;
-				break;
+				if (temp < a[j])
+				{
+					movebackbypos(a, len - 1, j);
+					a[j] = temp;
+					break;
+				}				
 			}
-		}
-		if (!bflag)
-		{
-			movebackbypos(a, len - 1, j);
-			a[j] = temp;
-		}
+		}		
 		temp = a[len - 1];
 		++k;
 	}	
