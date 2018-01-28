@@ -45,7 +45,7 @@ void selectsort(int a[], int len)
 
 void insertsort(int a[], int len)
 {
-	int i,j,temp;
+	int i,j,temp; 
 	for (i = 1; i < len; ++i)
 	{
 		temp = a[i];
