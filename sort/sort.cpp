@@ -7,15 +7,6 @@ void swap_hlp(int *p1, int *p2)
 	*p2 = temp;
 }
 
-void movebackbypos(int a[], int k, int pos)
-{
-	int i;
-	for (i = k; i >= pos; --i)
-	{
-		a[i] = a[i-1];
-	}
-}
-
 void bubblesort(int a[], int len)
 {
 	int i,j;
@@ -32,7 +23,7 @@ void bubblesort(int a[], int len)
 		}
 		if (bFinish)
 		{
-			return;
+			break;
 		}
 	}
 }
@@ -54,30 +45,14 @@ void selectsort(int a[], int len)
 
 void insertsort(int a[], int len)
 {
-	int i,j;
-	int k = 1;
-	int temp = a[len - 1];
-
-	for (i = 0; i < len - 1; ++i)
+	int i,j,temp;
+	for (i = 1; i < len; ++i)
 	{
-		if (temp >= a[k - 1])
+		temp = a[i];
+		for (j = i; j > 0 && a[j - 1] > temp; --j)
 		{
-			movebackbypos(a, len - 1, k);
-			a[k] = temp;			
+			a[j] = a[j-1];
 		}
-		else
-		{
-			for (j = 0; j < k; ++j)
-			{
-				if (temp < a[j])
-				{
-					movebackbypos(a, len - 1, j);
-					a[j] = temp;
-					break;
-				}				
-			}
-		}		
-		temp = a[len - 1];
-		++k;
-	}	
+		a[j] = temp;
+	}
 }
