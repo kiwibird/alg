@@ -56,3 +56,54 @@ void insertsort(int a[], int len)
 		a[j] = temp;
 	}
 }
+
+void mergeorderarray(int a[], int first, int mid, int last, int temp[])
+{
+	int i = first;
+	int j = mid + 1;
+	int k = 0;
+	
+	while(i <= mid && j <= last)
+	{
+		if (a[i] < a[j])
+		{
+			temp[k++] = a[i++];
+		}
+		else
+		{
+			temp[k++] = a[j++];
+		}
+	}
+	while (i <= mid)
+	{
+		temp[k++] = a[i++];
+	}
+	while (j <= last)
+	{
+		temp[k++] = a[j++];
+	}
+	for (i = 0; i < k; ++i)
+	{
+		a[i + first] = temp[i];
+	}
+}
+
+void mergesort_hlp(int a[], int first, int last, int temp[])
+{
+	if (last - first < 2)
+	{
+		return;
+	}
+
+	int mid = first + (last - first)/2;
+	mergesort_hlp(a, first, mid, temp);
+	mergesort_hlp(a, mid + 1, last, temp);
+	mergeorderarray(a, first, mid, last, temp);
+}
+
+void mergesort(int a[], int len)
+{
+	int *ptemp = new int[len];
+	mergesort_hlp(a, 0, len - 1, ptemp);
+	delete [] ptemp;
+}
