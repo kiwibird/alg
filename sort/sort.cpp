@@ -57,6 +57,7 @@ void insertsort(int a[], int len)
 	}
 }
 
+/* a 被划分为两个有序部分，合并 */
 void mergeorderarray(int a[], int first, int mid, int last, int temp[])
 {
 	int i = first;
@@ -90,20 +91,51 @@ void mergeorderarray(int a[], int first, int mid, int last, int temp[])
 
 void mergesort_hlp(int a[], int first, int last, int temp[])
 {
-	if (last - first < 2)
+	/* 递归出口条件是只有一个元素 */
+	if (first < last)
 	{
-		return;
+		int mid = first + (last - first)/2;
+		mergesort_hlp(a, first, mid, temp);
+		mergesort_hlp(a, mid + 1, last, temp);
+		mergeorderarray(a, first, mid, last, temp);
 	}
-
-	int mid = first + (last - first)/2;
-	mergesort_hlp(a, first, mid, temp);
-	mergesort_hlp(a, mid + 1, last, temp);
-	mergeorderarray(a, first, mid, last, temp);
 }
 
 void mergesort(int a[], int len)
 {
-	int *ptemp = new int[len];
+	int *ptemp = new int[len]; /* 弱点：空间复杂度比较高 */
 	mergesort_hlp(a, 0, len - 1, ptemp);
 	delete [] ptemp;
+}
+
+void heapify(int a[], int len, int pos)
+{
+	int r,c;
+	for (r = pos; 2*r + 1 <= len - 1; r = c)
+	{
+		c = 2*r + 1;
+		if (c + 1 <= len - 1 && a[c] < a[c + 1])
+		{
+			c += 1;
+		}
+		if (a[r] > a[c])
+		{
+			break;
+		}
+		swap_hlp(&a[r], &a[c]);
+	}
+}
+
+void heapsort(int a[], int len)
+{
+	int i = len/2 - 1;
+	for (; i >= 0; --i)
+	{
+    	heapify(a, len, i);
+	}
+	for (i = len - 1; i > 0; --i)
+	{
+		swap_hlp(&a[0], &a[i]);
+		heapify(a, i, 0);
+	}	
 }
