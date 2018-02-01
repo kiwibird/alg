@@ -139,3 +139,37 @@ void heapsort(int a[], int len)
 		heapify(a, i, 0);
 	}	
 }
+
+int getpartion(int a[], int low, int high)
+{
+	int key = a[low];
+	while(low < high)
+	{
+		while(low < high && key <= a[high])
+		{
+			high--;
+		}
+		swap_hlp(&a[low], &a[high]);
+		while(low < high && key >= a[low])
+		{
+			low++;
+		}
+		swap_hlp(&a[low], &a[high]);
+	}
+	return low;
+}
+
+void quicksort_hlp(int a[], int low, int high)
+{
+	if (low < high)
+	{
+		int key = getpartion(a, low, high);
+		quicksort_hlp(a, low, key - 1);
+		quicksort_hlp(a, key + 1, high);
+	}
+}
+
+void quicksort(int a[], int len)
+{
+	quicksort_hlp(a, 0, len - 1);
+}

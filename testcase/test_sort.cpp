@@ -35,3 +35,10 @@ TEST(heapsort)
 	heapsort(a, 10);
 	printarray(a, 10);
 }
+
+TEST(quicksort)
+{
+	int a[10] = {0,9,4,1,5,8,7,3,6,2};
+	quicksort(a, 10);
+	printarray(a, 10);
+}
