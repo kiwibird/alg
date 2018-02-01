@@ -131,12 +131,12 @@ void heapsort(int a[], int len)
 	int i = len/2 - 1;
 	for (; i >= 0; --i)
 	{
-    	heapify(a, len, i);
+	    heapify(a, len, i);
 	}
 	for (i = len - 1; i > 0; --i)
 	{
 		swap_hlp(&a[0], &a[i]);
-		heapify(a, i, 0);
+        heapify(a, i, 0);
 	}	
 }
 
@@ -147,7 +147,7 @@ int getpartion(int a[], int low, int high)
 	{
 		while(low < high && key <= a[high])
 		{
-			high--;
+		    high--;
 		}
 		swap_hlp(&a[low], &a[high]);
 		while(low < high && key >= a[low])
