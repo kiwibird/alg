@@ -42,3 +42,10 @@ TEST(quicksort)
 	quicksort(a, 10);
 	printarray(a, 10);
 }
+
+TEST(shellsort)
+{
+    int a[10] = {0,9,4,1,5,8,7,3,6,2};
+    shellsort(a, 10);
+    printarray(a, 10);
+}

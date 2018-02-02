@@ -7,4 +7,5 @@ void insertsort(int a[], int len);
 void mergesort(int a[], int len);
 void heapsort(int a[], int len);
 void quicksort(int a[], int len);
+void shellsort(int a[], int len);
 #endif // sort_h__

@@ -173,3 +173,21 @@ void quicksort(int a[], int len)
 {
 	quicksort_hlp(a, 0, len - 1);
 }
+
+void shellsort(int a[], int len)
+{
+    int i,j,temp;
+    int gap = len/2;
+    for (; gap > 0; gap/=2)
+    {
+        for (i = gap; i < len; ++i)
+        {
+            temp = a[i];
+            for (j = i; j > 0 && a[j - gap] > temp; j -= gap)
+            {
+                a[j] = a[j - gap];
+            }
+            a[j] = temp;
+        }
+    }
+}
